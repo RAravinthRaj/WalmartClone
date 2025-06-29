@@ -1,100 +1,114 @@
 import {
   Box,
   Button,
-  Flex,
-  HStack,
   Image,
   Text,
   VStack,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import React from "react";
 
 export const Footer = () => {
   return (
-    <>
-      <VStack>
-        <Box w="100%" mt={100}>
-          <Box
-            h={150}
-            bg="#E6F1FC"
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            flexDirection={"column"}
+    <VStack spacing={0} w="100%">
+      {/* Feedback Section */}
+      <Box w="100%" mt={20}>
+        <Box
+          h="150px"
+          bg="#E6F1FC"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+          px={4}
+          textAlign="center"
+        >
+          <Text fontSize="md" className="roboto-regular">
+            We’d love to hear what you think!
+          </Text>
+          <Button
+            border="1px solid black"
+            borderRadius="full"
+            bg="white"
+            mt={4}
           >
-            <Text className="roboto-regular">
-              We’d love to hear what you think!
-            </Text>
-            <Button
-              border={"1px solid black"}
-              borderRadius={20}
-              bg="white"
-              mt={5}
-            >
-              Give feedback
-            </Button>
-          </Box>
-          <Box
-            h={150}
-            bg="#004F9A"
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            flexDirection={"column"}
-            color={"white"}
-          >
-            <Box w="80%" display={"flex"} justifyContent={"center"}>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>All Departments</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Store Directory</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Careers</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Our Company</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Sell on Walmart.com</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Help</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Product Recalls</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Accessibility</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Tax Exempt Program</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Get the Walmart App</Box>
-            </Box>
-            <Box
-              w="80%"
-              display={"flex"}
-              justifyContent={"center"}
-              alignItems={"center"}
-              className="rotobo-regular'
-              xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx02"
-            >
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Sign-up for Email</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Safety Data Sheet</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Terms of Use</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Privacy & Security</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>California Supply Chain Act</Box>
-              <Box >
-                <Image
-                  src="https://i5.walmartimages.com/dfwrs/76316474-f70e/k2-_67001355-c576-4ca2-989d-260a2673c41a.v1.png"
-                  w={8}
-                />
-              </Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Your Privacy Choices</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Notice at Collection</Box>
-            </Box>
-            <Box
-              w="80%"
-              display={"flex"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Request My Personal Information</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Brand Shop Directory</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Pharmacy</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>Walmart Business</Box>
-              <Box ml={{"base":"0","sm":0,"md":0,"lg":4,"xl":4}}>#IYWYK</Box>
-            </Box>
-            <Box mt={10}>
-              <Text>© 2024 Walmart. All Rights Reserved.</Text>
-            </Box>
+            Give feedback
+          </Button>
+        </Box>
+
+        {/* Main Footer */}
+        <Box bg="#004F9A" color="white" py={10} px={4}>
+          {/* First Row */}
+          <Wrap spacing={4} justify="center" maxW="90%" mx="auto" mb={4}>
+            {[
+              "All Departments",
+              "Store Directory",
+              "Careers",
+              "Our Company",
+              "Sell on Walmart.com",
+              "Help",
+              "Product Recalls",
+              "Accessibility",
+              "Tax Exempt Program",
+              "Get the Walmart App",
+            ].map((item, index) => (
+              <WrapItem key={index}>
+                <Text fontSize="sm">{item}</Text>
+              </WrapItem>
+            ))}
+          </Wrap>
+
+          {/* Second Row */}
+          <Wrap spacing={4} justify="center" maxW="90%" mx="auto" mb={4}>
+            {[
+              "Sign-up for Email",
+              "Safety Data Sheet",
+              "Terms of Use",
+              "Privacy & Security",
+              "California Supply Chain Act",
+            ].map((item, index) => (
+              <WrapItem key={index}>
+                <Text fontSize="sm">{item}</Text>
+              </WrapItem>
+            ))}
+            <WrapItem>
+              <Image
+                src="https://i5.walmartimages.com/dfwrs/76316474-f70e/k2-_67001355-c576-4ca2-989d-260a2673c41a.v1.png"
+                w={8}
+                alt="Privacy Choices"
+              />
+            </WrapItem>
+            {["Your Privacy Choices", "Notice at Collection"].map(
+              (item, index) => (
+                <WrapItem key={index}>
+                  <Text fontSize="sm">{item}</Text>
+                </WrapItem>
+              )
+            )}
+          </Wrap>
+
+          {/* Third Row */}
+          <Wrap spacing={4} justify="center" maxW="90%" mx="auto" mb={6}>
+            {[
+              "Request My Personal Information",
+              "Brand Shop Directory",
+              "Pharmacy",
+              "Walmart Business",
+              "#IYWYK",
+            ].map((item, index) => (
+              <WrapItem key={index}>
+                <Text fontSize="sm">{item}</Text>
+              </WrapItem>
+            ))}
+          </Wrap>
+
+          {/* Copyright */}
+          <Box textAlign="center" mt={6}>
+            <Text fontSize="sm">© 2024 Walmart. All Rights Reserved.</Text>
           </Box>
         </Box>
-      </VStack>
-    </>
+      </Box>
+    </VStack>
   );
 };
