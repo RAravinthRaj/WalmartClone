@@ -20,7 +20,6 @@ import { LiaRegisteredSolid } from "react-icons/lia";
 import { LineHorizontal } from "./LineHorizontal";
 
 const navItems = [
-  { icon: "/assets/walmart-icon.png", label: "Walmart +" },
   { icon: <RepeatClockIcon />, label: "Purchase history" },
   { icon: <TbSitemap />, label: "My items" },
   { icon: <CiUser />, label: "Account" },
@@ -48,7 +47,6 @@ function SideNavbar({ isOpen, onClose }) {
           <Image
             src="https://i5.walmartimages.com/dfw/4ff9c6c9-d10e/k2-_ef2c8660-96ed-4f64-891d-329fa488c482.v1.png"
             w={10}
-            alt="Walmart logo"
           />
           {auth ? (
             <Text fontSize="md" fontWeight="medium" ml={4}>
@@ -68,20 +66,20 @@ function SideNavbar({ isOpen, onClose }) {
           )}
         </DrawerHeader>
 
-        <DrawerBody px={0}>
+        <DrawerBody>
           {navItems.map(({ icon, label }, index) => (
             <Box key={label}>
               <Box
                 display="flex"
                 alignItems="center"
                 px={5}
-                py={3}
+                py={2}
                 cursor="pointer"
                 _hover={{ bg: "gray.100" }}
               >
                 <Box fontSize="lg" mr={3}>
                   {typeof icon === "string" ? (
-                    <Image src={icon} w={5} alt={label} />
+                    <Image src={icon} w={3} alt={label} />
                   ) : (
                     icon
                   )}

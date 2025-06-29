@@ -6,277 +6,297 @@ import {
   Image,
   SkeletonCircle,
   SkeletonText,
-  Spacer,
   Text,
+  Stack,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Heading1 from "./Heading1";
 
 export const Main = () => {
-  const [isLoading,setLoading]=useState(true)
-  useEffect(()=>{
-    setTimeout(()=>{
-         setLoading((prev)=>!prev)
-    },2000)
-  },[])
+  const [isLoading, setLoading] = useState(true);
 
-if(isLoading){
-  return <Box padding='6' boxShadow='lg' bg='white'>
-  <SkeletonCircle size='10' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-</Box>
-}
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
+  if (isLoading) {
+    return (
+      <Box padding="6" boxShadow="lg" bg="white">
+        <SkeletonCircle size="10" />
+        <SkeletonText mt="4" noOfLines={6} spacing="4" skeletonHeight="2" />
+      </Box>
+    );
+  }
 
   return (
-    <Flex w="100%" justifyContent={"space-evenly"} mt={5}>
-      <Box w="20%">
-        <Box height="250px" bg="#E6CFA7" borderRadius={8}>
-          <Box ml={10} display={"flex"} flexDirection={"column"}>
-            <Text fontSize={20} className="roboto-bold" mt={5}>
-              Floor care for so much less
-            </Text>
-            <Link textAlign="center">
-              <u>Shop now</u>
-            </Link>
-          </Box>
-          <Flex justifyContent={"flex-end"}>
+    <Stack
+      direction={{ base: "column", lg: "row" }}
+      spacing={6}
+      w="100%"
+      mt={5}
+      px={{ base: 4, md: 6, lg: 10 }}
+    >
+      {/* Left Column */}
+      <Box
+        w={{ base: "100%", lg: "20%" }}
+        display="flex"
+        flexDirection="column"
+        gap={6}
+      >
+        <Box
+          height="250px"
+          bg="#E6CFA7"
+          borderRadius="2xl"
+          p={5}
+          boxShadow="md"
+        >
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
+            Floor care for so much less
+          </Text>
+          <Link>
+            <u>Shop now</u>
+          </Link>
+          <Flex justifyContent="flex-end">
             <Image
               src="https://github.com/B2Kumar03/homepageImage/blob/main/shark-removebg-preview.png?raw=true"
               alt="logo"
-              w={230}
+              w="120px"
+              mt={4}
             />
           </Flex>
         </Box>
-        <Box bg="#D9E4F5" mt={8}>
-          <Box ml={5} display={"flex"} flexDirection={"column"}>
-            <Text fontSize={20} className="roboto-bold" mt={5}>
-              Top styles-low,low <br />
-              Prices
-            </Text>
-          </Box>
-          <Flex>
-            <Box>
-              <Box ml={5}>
-                <Link textAlign="center">
-                  <u>Shop now</u>
-                </Link>
-              </Box>
 
-              <Box mt={100} ml={5}>
-                <Heading>
-                  <sup>$</sup>22<sup>43</sup>
-                </Heading>
-              </Box>
+        <Box bg="#D9E4F5" borderRadius="2xl" p={5} boxShadow="md">
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
+            Top styles - low, low Prices
+          </Text>
+          <Flex
+            direction={{ base: "column", sm: "row" }}
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Box>
+              <Link>
+                <u>Shop now</u>
+              </Link>
+              <Heading mt={4} size="md">
+                <sup>$</sup>22<sup>43</sup>
+              </Heading>
             </Box>
-            <Box overflow={"hidden"} ml={5}>
-              <Image
-                src="https://github.com/B2Kumar03/homepageImage/blob/main/woman-removebg-preview.png?raw=true"
-                alt="woman"
-                w="100%"
-              />
-            </Box>
+            <Image
+              src="https://github.com/B2Kumar03/homepageImage/blob/main/woman-removebg-preview.png?raw=true"
+              alt="woman"
+              w={{ base: "100%", sm: "60%" }}
+              mt={{ base: 4, sm: 0 }}
+            />
           </Flex>
         </Box>
-        <Box bg="#95BBF9" mt={8} borderRadius={8}>
-          <Flex justifyContent={"space-around"}>
+
+        <Box bg="#95BBF9" borderRadius="2xl" p={5} boxShadow="md">
+          <Flex justifyContent="space-between" alignItems="center">
             <Box>
-              <Text fontSize={20} className="roboto-bold" mt={8} ml={5}>
+              <Text fontSize="lg" fontWeight="bold">
                 Let's play under $25
               </Text>
-              <Box mt={8} ml={5}>
-                <Link>
-                  <u>Shop toys</u>
-                </Link>
-              </Box>
+              <Link>
+                <u>Shop toys</u>
+              </Link>
             </Box>
             <Image
               src="https://github.com/B2Kumar03/homepageImage/blob/main/toys-removebg-preview.png?raw=true"
               alt="toys"
-              w="60%"
+              w={{ base: "40%", sm: "30%" }}
             />
           </Flex>
         </Box>
       </Box>
-      <Box w="50%">
-        <Box height="370px" bg="#B3CEFE" borderRadius={8}>
-          <Flex justifyContent={"space-evenly"}>
-            <Box
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-            >
-              <Box mt={8}>
-                <Heading color="black" size="4xl" mb={5}>
-                  Springs
-                </Heading>
-                <Heading color="black" size="2xl" mt="-5">
-                  Savings
-                </Heading>
-              </Box>
-              <Box mt={10}>
-                <Button border={"1px solid black"} borderRadius={20}>
-                  Shop all
-                </Button>
-              </Box>
-              <Box>
-                <Text
-                  textOverflow={"ellipsis"}
-                  overflow={"hidden"}
-                  whiteSpace={"nowrap"}
-                  className="text-truncate"
-                >
-                  <Image
-                    src="https://github.com/B2Kumar03/homepageImage/blob/main/price-removebg-preview.png?raw=true"
-                    ml={-10}
-                  />
-                </Text>
-              </Box>
-            </Box>
-            <Box>
-              <Box>
-                <Image
-                  src="https://github.com/B2Kumar03/homepageImage/blob/main/samsungTv-removebg-preview.png?raw=true"
-                  alt="tv"
-                  w={450}
-                />
-              </Box>
-            </Box>
-          </Flex>
-        </Box>
-        <Box mt={8} borderRadius={8}>
-          <Flex justifyContent={"space-between"}>
-            <Box
-              w="47%"
-              height={"250px"}
-              bg="#D0CCC0"
-              h="100%"
-              bgImage={
-                "https://i5.walmartimages.com/seo/Better-Homes-Gardens-Oaklee-2-Drawer-Nightstand-for-bedroom-Charcoal-Finish_4daaa94e-a1d5-45ec-8893-092a1289c2dd.3e44901795490ec5efab0fc6859d5192.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF"
-              }
-              backgroundSize="cover"
-              borderRadius={8}
-            >
-              <Box height={"280px"} ml={5} borderRadius={8}>
-                <Box>
-                  <Heading>
-                    Budget friendly <br /> furniture
-                  </Heading>
-                </Box>
-                <Box>
-                  <Link>
-                    <u>Shop now</u>
-                  </Link>
-                </Box>
-                <Box mt={15}>
-                  <Text>From</Text>
-                  <Heading>
-                    <sup>$</sup>78
-                  </Heading>
-                </Box>
-              </Box>
-            </Box>
-            <Box w="47%" bg="#FDE77F" h="100%" borderRadius={8}>
-              <Box ml={5} display={"flex"} flexDirection={"column"}>
-                <Text fontSize={20} className="roboto-bold" mt={10}>
-                  Up to 40% off
-                  <br />
-                </Text>
-              </Box>
-              <Flex>
-                <Box>
-                  <Box ml={5}>
-                    <Link textAlign="center">
-                      <u>Shopow</u>
-                    </Link>
-                  </Box>
 
-                  <Box mt={100} ml={5}>
-                    <Heading>
-                      Flase <br />
-                      Deals
-                    </Heading>
-                  </Box>
-                </Box>
-                <Box overflow={"hidden"} ml={5}>
-                  <Image
-                    src="https://github.com/B2Kumar03/homepageImage/blob/main/lamp-removebg-preview.png?raw=true"
-                    alt="woman"
-                    w="100%"
-                  />
-                </Box>
-              </Flex>
-            </Box>
-          </Flex>
-        </Box>
-        <Box bg="#FFC21F" mt={8} borderRadius={8}>
-          <Flex>
-            <Box w={"70%"} p={10}>
-              <Text fontSize={20}>
-                Enjoy Free Same-day delivery low prices !{" "}
-              </Text>
-              <Text>Apply tearm</Text>
-              <Box mt={8}>
-                {" "}
-                <Link>
-                  <u>Join walmart+</u>
-                </Link>
-              </Box>
-            </Box>
-            <Box w={"30%"} bg="white" color="#0170DA" borderLeftRadius={50}>
-              <Image src="https://github.com/B2Kumar03/homepageImage/blob/main/walmartlogo.png?raw=true" />
-            </Box>
-          </Flex>
-        </Box>
-      </Box>
-      <Box w="20%">
-        <Box height="250px" bg="#E7EDF6" borderRadius={8}>
-          <Box>
-            <Text fontSize={25} className="roboto-bold" p={5}>
-              Save on personal care
-            </Text>
-          </Box>
-          <Flex p={5}>
-            <Box className="roboto-regular">
-              <Link>
-                <u>Shop now</u>
-              </Link>
-            </Box>
-            <Box>
-              <Image src="https://github.com/B2Kumar03/homepageImage/blob/main/savingss-removebg-preview.png?raw=true" />
-            </Box>
-          </Flex>
-        </Box>
-        <Box height="250px" bg="#FEEABF" mt={5}>
-          <Box>
-            <Text fontSize={18} className="roboto-bold" p={5}>
-              Apple savings up to $150 off
-            </Text>
-          </Box>
-          <Flex p={5}>
-            <Box className="roboto-regular">
-              <Link>
-                <u>Shop now</u>
-              </Link>
-            </Box>
-            <Box ml={10}>
+      {/* Center Column */}
+      <Box
+        w={{ base: "100%", lg: "60%" }}
+        display="flex"
+        flexDirection="column"
+        gap={6}
+      >
+        <Box bg="#B3CEFE" borderRadius="2xl" p={6} boxShadow="lg">
+          <Flex
+            direction={{ base: "column", md: "row" }}
+            justifyContent="space-between"
+            alignItems="center"
+            gap={6}
+          >
+            <Box textAlign={{ base: "center", md: "left" }}>
+              <Heading size="3xl" mb={2}>
+                Springs
+              </Heading>
+              <Heading size="xl">Savings</Heading>
+              <Button
+                mt={4}
+                border="1px solid black"
+                borderRadius={20}
+                colorScheme="blackAlpha"
+              >
+                Shop all
+              </Button>
               <Image
-                src="https://github.com/B2Kumar03/homepageImage/blob/main/smartphone2-removebg-preview.png?raw=true"
-                w="70%"
+                src="https://github.com/B2Kumar03/homepageImage/blob/main/price-removebg-preview.png?raw=true"
+                mt={4}
+                maxW="150px"
+                mx="auto"
+              />
+            </Box>
+            <Image
+              src="https://github.com/B2Kumar03/homepageImage/blob/main/samsungTv-removebg-preview.png?raw=true"
+              alt="tv"
+              w={{ base: "100%", md: "60%" }}
+              maxW="400px"
+            />
+          </Flex>
+        </Box>
+
+        <Flex direction={{ base: "column", md: "row" }} gap={6}>
+          <Box
+            w={{ base: "100%", md: "50%" }}
+            bgImage="https://i5.walmartimages.com/seo/Better-Homes-Gardens-Oaklee-2-Drawer-Nightstand-for-bedroom-Charcoal-Finish_4daaa94e-a1d5-45ec-8893-092a1289c2dd.3e44901795490ec5efab0fc6859d5192.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF"
+            backgroundSize="cover"
+            height="280px"
+            borderRadius={8}
+            p={5}
+            color="white"
+          >
+            <Heading size="md">Budget friendly furniture</Heading>
+            <Link>
+              <u>Shop now</u>
+            </Link>
+            <Text mt={4}>From</Text>
+            <Heading size="lg">
+              <sup>$</sup>78
+            </Heading>
+          </Box>
+
+          <Box
+            w={{ base: "100%", md: "50%" }}
+            bg="#FDE77F"
+            borderRadius={8}
+            p={5}
+            boxShadow="sm"
+          >
+            <Text fontSize={20} fontWeight="bold">
+              Up to 40% off
+            </Text>
+            <Flex
+              direction={{ base: "column", sm: "row" }}
+              alignItems="center"
+              gap={4}
+            >
+              <Box>
+                <Link>
+                  <u>Shop now</u>
+                </Link>
+                <Heading mt={4} size="lg">
+                  Flase Deals
+                </Heading>
+              </Box>
+              <Image
+                src="https://github.com/B2Kumar03/homepageImage/blob/main/lamp-removebg-preview.png?raw=true"
+                alt="lamp"
+                w="100%"
+                maxW="150px"
+              />
+            </Flex>
+          </Box>
+        </Flex>
+
+        <Box bg="#FFC21F" borderRadius={8} p={5} mt={6}>
+          <Flex
+            direction={{ base: "column", sm: "row" }}
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Box>
+              <Text fontSize={20} fontWeight="semibold">
+                Enjoy Free Same-day delivery low prices!
+              </Text>
+              <Text fontSize={14}>Apply terms</Text>
+              <Link>
+                <u>Join Walmart+</u>
+              </Link>
+            </Box>
+            <Box
+              mt={{ base: 4, sm: 0 }}
+              bg="white"
+              color="#0170DA"
+              borderLeftRadius={50}
+              px={4}
+              py={2}
+            >
+              <Image
+                src="https://github.com/B2Kumar03/homepageImage/blob/main/walmartlogo.png?raw=true"
+                maxW="120px"
               />
             </Box>
           </Flex>
         </Box>
-        <Box height="350px" bg="#A5CBEE" mt={8} borderRadius={8}>
-          <Image src="https://github.com/B2Kumar03/homepageImage/blob/main/wholeContent.png?raw=true" alt="image" h={"100%"} borderRadius={8} cursor={"pointer"}/>
+      </Box>
+
+      {/* Right Column */}
+      <Box
+        w={{ base: "100%", lg: "20%" }}
+        display="flex"
+        flexDirection="column"
+        gap={6}
+      >
+        <Box bg="#E7EDF6" borderRadius={8} p={5} boxShadow="sm">
+          <Text fontSize={22} fontWeight="bold">
+            Save on personal care
+          </Text>
+          <Flex justifyContent="space-between" alignItems="center" mt={2}>
+            <Link>
+              <u>Shop now</u>
+            </Link>
+            <Image
+              src="https://github.com/B2Kumar03/homepageImage/blob/main/savingss-removebg-preview.png?raw=true"
+              w="50%"
+            />
+          </Flex>
+        </Box>
+
+        <Box bg="#FEEABF" borderRadius={8} p={5} boxShadow="sm">
+          <Text fontSize={18} fontWeight="bold">
+            Apple savings up to $150 off
+          </Text>
+          <Flex justifyContent="space-between" alignItems="center" mt={2}>
+            <Link>
+              <u>Shop now</u>
+            </Link>
+            <Image
+              src="https://github.com/B2Kumar03/homepageImage/blob/main/smartphone2-removebg-preview.png?raw=true"
+              w="50%"
+            />
+          </Flex>
+        </Box>
+
+        <Box
+          height="350px"
+          bg="#A5CBEE"
+          borderRadius={8}
+          overflow="hidden"
+          boxShadow="sm"
+        >
+          <Image
+            src="https://github.com/B2Kumar03/homepageImage/blob/main/wholeContent.png?raw=true"
+            alt="image"
+            h="100%"
+            w="100%"
+            objectFit="cover"
+            cursor="pointer"
+          />
         </Box>
       </Box>
-    </Flex>
+    </Stack>
   );
 };
