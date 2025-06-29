@@ -1,8 +1,9 @@
-# React + Vite
+# Walmart Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simplified clone of the Walmart website, focusing on the homepage, login page, and cart page.
 
-Currently, two official plugins are available:
+It is built using React with Vite for fast development and uses TypeScript for type safety. Styling is handled with Styled Components to keep styles modular and scoped to components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The layout is fully responsive and adapts to mobile, tablet, and desktop screen sizes. The codebase follows a modular structure, making it easy to maintain and extend.
+
+This project is intended for learning purposes and is not affiliated with Walmart.
