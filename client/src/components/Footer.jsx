@@ -2,38 +2,88 @@ import {
   Box,
   Button,
   Image,
+  Input,
   Text,
   VStack,
   Wrap,
   WrapItem,
+  useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 export const Footer = () => {
+  const [feedback, setFeedback] = useState("");
+  const toast = useToast();
+
+  const handleFeedbackSubmit = async () => {
+    if (!feedback.trim()) {
+      toast({
+        title: "Feedback is empty",
+        description: "Please enter your feedback before submitting.",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    try {
+      await axios.post("/api/feedback", { message: feedback });
+      toast({
+        title: "Feedback submitted",
+        description: "Thank you for your input!",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      setFeedback(""); // Reset input
+    } catch (err) {
+      toast({
+        title: "Submission failed",
+        description: "Please try again later.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <VStack spacing={0} w="100%">
       {/* Feedback Section */}
       <Box w="100%" mt={20}>
         <Box
-          h="150px"
+          h="auto"
           bg="#E6F1FC"
           display="flex"
           alignItems="center"
           justifyContent="center"
           flexDirection="column"
           px={4}
+          py={6}
           textAlign="center"
         >
           <Text fontSize="md" className="roboto-regular">
             We’d love to hear what you think!
           </Text>
+          <Input
+            mt={4}
+            w="300px"
+            placeholder="Enter your feedback..."
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            bg="white"
+            border="1px solid #ccc"
+          />
           <Button
             border="1px solid black"
             borderRadius="full"
             bg="white"
             mt={4}
+            onClick={handleFeedbackSubmit}
           >
-            Give feedback
+            Submit Feedback
           </Button>
         </Box>
 

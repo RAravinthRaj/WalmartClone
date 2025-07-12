@@ -20,7 +20,7 @@ export const Main = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 500);
   }, []);
 
   if (isLoading) {
@@ -61,12 +61,14 @@ export const Main = () => {
             <u>Shop now</u>
           </Link>
           <Flex justifyContent="flex-end">
-            <Image
-              src="https://github.com/B2Kumar03/homepageImage/blob/main/shark-removebg-preview.png?raw=true"
-              alt="logo"
-              w="120px"
-              mt={4}
-            />
+            <Link to="/">
+              <Image
+                src="https://github.com/B2Kumar03/homepageImage/blob/main/shark-removebg-preview.png?raw=true"
+                alt="logo"
+                w="120px"
+                mt={4}
+              />
+            </Link>
           </Flex>
         </Box>
 

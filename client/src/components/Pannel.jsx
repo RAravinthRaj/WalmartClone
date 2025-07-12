@@ -1,11 +1,8 @@
 import {
   Box,
-  Button,
   Flex,
   HStack,
   Image,
-  Modal,
-  Spacer,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -23,8 +20,26 @@ export const Pannel = () => {
   const [pannelButton, setPannelButton] = useState(false);
 
   const toggleDrawer = () => {
-    setPannelButton((prev) => !prev);
-    pannelButton ? onClose() : onOpen();
+    setPannelButton((prev) => {
+      const newState = !prev;
+      newState ? onOpen() : onClose();
+      return newState;
+    });
+  };
+
+  // Optional: Handle filter update from Modalhome
+  const handlePreferenceSelect = async (filterText) => {
+    try {
+      const response = await fetch("http://localhost:3000/set-filter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ filter: filterText }),
+      });
+      const data = await response.json();
+      console.log("Filter context updated:", data.context);
+    } catch (err) {
+      console.error("Error setting preference filter:", err);
+    }
   };
 
   return (
@@ -55,7 +70,12 @@ export const Pannel = () => {
             />
             <Text display="flex" alignItems="center">
               How do you want your items?{" "}
-              <Box ml={2} cursor="pointer" onClick={toggleDrawer}>
+              <Box
+                ml={2}
+                cursor="pointer"
+                onClick={toggleDrawer}
+                aria-label="Toggle delivery settings"
+              >
                 {!pannelButton ? <SlArrowDown /> : <SlArrowUp />}
               </Box>
             </Text>
@@ -92,11 +112,21 @@ export const Pannel = () => {
           mt={{ base: 2, lg: 0 }}
           flexWrap="wrap"
         >
-          <ChakraLink as={ReactRouterLink}>Deals</ChakraLink>
-          <ChakraLink as={ReactRouterLink}>Grocery & Essentials</ChakraLink>
-          <ChakraLink as={ReactRouterLink}>Easter</ChakraLink>
-          <ChakraLink as={ReactRouterLink}>Walmart Style</ChakraLink>
-          <ChakraLink as={ReactRouterLink}>Baby Days</ChakraLink>
+          <ChakraLink as={ReactRouterLink} to="/deals">
+            Deals
+          </ChakraLink>
+          <ChakraLink as={ReactRouterLink} to="/grocery">
+            Grocery & Essentials
+          </ChakraLink>
+          <ChakraLink as={ReactRouterLink} to="/easter">
+            Easter
+          </ChakraLink>
+          <ChakraLink as={ReactRouterLink} to="/style">
+            Walmart Style
+          </ChakraLink>
+          <ChakraLink as={ReactRouterLink} to="/baby">
+            Baby Days
+          </ChakraLink>
         </Box>
 
         {/* Animated Modal */}
@@ -105,7 +135,14 @@ export const Pannel = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
         >
-          <Modalhome isOpen={isOpen} onClose={onClose} />
+          <Modalhome
+            isOpen={isOpen}
+            onClose={() => {
+              setPannelButton(false);
+              onClose();
+            }}
+            onPreferenceSelect={handlePreferenceSelect} // ⬅️ optional prop to update filter
+          />
         </motion.div>
       </Flex>
     </HStack>

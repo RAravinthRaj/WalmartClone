@@ -25,7 +25,7 @@ export const Allroutes = () => {
         <Route path="/account/login" element={<Login />} />
         <Route path="/account/verify" element={<Pin />} />
         <Route path="/product/checkout" element={<Checkout />} />
-        <Route path={`/product/:id`} element={<SearchProduct />} />
+        <Route path="/product/search" element={<SearchProduct />} />
         <Route path={"/product/details"} element={<ProductDetails />} />
       </Routes>
     </>
